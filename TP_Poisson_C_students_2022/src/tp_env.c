@@ -4,6 +4,7 @@
 /* test the environment of compilation    */
 /******************************************/
 #include "tp_env.h"
+#include "atlas_headers.h"
 int main(int argc,char *argv[])
 /* ** argc: Nombre d'arguments */
 /* ** argv: Valeur des arguments */
