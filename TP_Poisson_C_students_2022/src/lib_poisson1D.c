@@ -27,11 +27,11 @@ void set_GB_operator_colMajor_poisson1D(double* AB, int *lab, int *la, int *kv){
 
 void set_GB_operator_colMajor_poisson1D_Id(double* AB, int *lab, int *la, int *kv){
   int k;
-  for (int j=0;j<(*la);jj++){
+  for (int j=0;j<(*la);j++){
     k = j * (*lab);
 
     if (*kv >= 0){
-      for (int i=0;i< *kv;ii++){
+      for (int i=0;i< *kv;i++){
 	AB[k+i]=0.0;
       }
     }
