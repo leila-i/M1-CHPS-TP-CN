@@ -44,21 +44,24 @@ OBJTP2ITER= lib_poisson1D.o tp_poisson1D_iter.o
 OBJTP2DIRECT= lib_poisson1D.o tp_poisson1D_direct.o
 #
 
-all: 
-#bin/tp_testenv bin/tpPoisson1D_iter bin/tpPoisson1D_direct
+all: bin/tp_testenv bin/tpPoisson1D_direct
+#bin/tpPoisson1D_iter
 
 testenv: bin/tp_testenv
 
 tpPoisson1D_iter: bin/tpPoisson1D_iter
 
 tpPoisson1D_direct: bin/tpPoisson1D_direct
-
-tp_env.o: $(TPDIRSRC)/tp_env.c
-	$(CC) $(OPTC) -c $(INCL) $(TPDIRSRC)/tp_env.c
 ###################################################
 tp_env: tp_env.o
 	$(CC) $(OPTC) $< -o $@ $(INCL)  $(LIBS)
+
+tp_poisson1D_direct: $(TPDIRSRC)/tp_poisson1D_direct.c $(TPDIRSRC)/lib_poisson1D.c
+	$(CC) $(OPTC) $^ -o $@ $(INCL)  $(LIBS)
 ###################################################
+tp_env.o: $(TPDIRSRC)/tp_env.c
+	$(CC) $(OPTC) -c $(INCL) $(TPDIRSRC)/tp_env.c
+
 lib_poisson1D.o: $(TPDIRSRC)/lib_poisson1D.c
 	$(CC) $(OPTC) -c $(INCL) $(TPDIRSRC)/lib_poisson1D.c 
 
@@ -87,4 +90,4 @@ run_tpPoisson1D_direct:
 	bin/tpPoisson1D_direct
 
 clean:
-	rm *.o bin/* tp_env
+	rm *.o bin/* tp_env  tp_poisson1D_direct

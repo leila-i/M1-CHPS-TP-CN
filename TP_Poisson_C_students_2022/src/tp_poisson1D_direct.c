@@ -81,6 +81,21 @@ int main(int argc,char *argv[])
 
   /* Relative forward error */
   // TODO : Compute relative norm of the residual
+
+  //#############################################################################//
+  /* It can also be solved with dgbsv (dgbtrf+dgbtrs) */
+  /*  ierr = dgbsv_(&la, &kl, &ku, &NRHS, AB, &lab, ipiv, RHS, &la, &info);*/
+
+  write_xy(RHS, X, &la, "SOL.dat");
+
+  /* Relative forward error */
+  temp = cblas_ddot(la, RHS, 1, RHS,1);
+  temp = sqrt(temp);
+  cblas_daxpy(la, -1.0, RHS, 1, EX_SOL, 1);
+  relres = cblas_ddot(la, EX_SOL, 1, EX_SOL,1);
+  relres = sqrt(relres);
+  relres = relres / temp;
+  //#############################################################################//
   
   printf("\nThe relative forward error is relres = %e\n",relres);
 
